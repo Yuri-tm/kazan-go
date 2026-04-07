@@ -1,11 +1,13 @@
 import KenBurnsBackground from "@/components/KenBurnsBackground";
 import ScrollReveal from "@/components/ScrollReveal";
+import SectionPeek from "@/components/SectionPeek";
 import doctorsImg from "@/assets/doctors_small.jpg";
+import childrenImg from "@/assets/children.jpg";
 
 const MedicalSection = () => (
-  <section id="medical" className="relative min-h-screen w-full snap-start overflow-hidden">
+  <section id="medical" className="relative h-screen w-full snap-start overflow-hidden">
     <KenBurnsBackground image={doctorsImg} effect="pan-left" overlay="bg-gradient-to-r from-black/70 via-black/40 to-transparent">
-      <div className="flex flex-col justify-center min-h-screen px-8 sm:px-16 py-16 max-w-2xl">
+      <div className="flex flex-col justify-center h-[72%] px-8 sm:px-16 py-16 max-w-2xl">
         <ScrollReveal>
           <h2 className="text-3xl sm:text-5xl font-bold text-white drop-shadow-lg leading-tight">
             Отдых с пользой для здоровья
@@ -24,6 +26,12 @@ const MedicalSection = () => (
         </ScrollReveal>
       </div>
     </KenBurnsBackground>
+
+    <SectionPeek
+      nextSectionId="family"
+      nextImage={childrenImg}
+      nextTitle="Отдых всей семьёй"
+    />
   </section>
 );
 

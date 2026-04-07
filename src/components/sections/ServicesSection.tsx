@@ -1,6 +1,7 @@
 import { Home, Car, HeartPulse } from "lucide-react";
 import KenBurnsBackground from "@/components/KenBurnsBackground";
 import ScrollReveal from "@/components/ScrollReveal";
+import SectionPeek from "@/components/SectionPeek";
 import servicesImg from "@/assets/services.jpeg";
 
 const services = [
@@ -10,9 +11,9 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section id="services" className="relative min-h-screen w-full snap-start overflow-hidden">
+  <section id="services" className="relative h-screen w-full snap-start overflow-hidden">
     <KenBurnsBackground image={servicesImg} effect="zoom-in" overlay="bg-gradient-to-b from-black/60 to-black/70">
-      <div className="flex flex-col items-center justify-center min-h-screen px-6 py-16">
+      <div className="flex flex-col items-center justify-center h-[72%] px-6 py-16">
         <ScrollReveal>
           <h2 className="text-3xl sm:text-5xl font-bold text-white text-center drop-shadow-lg">
             Ваш персональный помощник в Казани
@@ -32,6 +33,12 @@ const ServicesSection = () => (
         </div>
       </div>
     </KenBurnsBackground>
+
+    <SectionPeek
+      nextSectionId="contact"
+      nextImage={servicesImg}
+      nextTitle="Айда в Казань?"
+    />
   </section>
 );
 

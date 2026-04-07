@@ -1,6 +1,8 @@
 import KenBurnsBackground from "@/components/KenBurnsBackground";
 import ScrollReveal from "@/components/ScrollReveal";
+import SectionPeek from "@/components/SectionPeek";
 import kamskoeImg from "@/assets/kamskoe_crop.jpg";
+import doctorsImg from "@/assets/doctors_small.jpg";
 
 const venues = [
   { name: "«Ривьера»", url: "https://kazanriviera.ru/aquapark/", desc: "Аквапарк" },
@@ -10,9 +12,9 @@ const venues = [
 ];
 
 const WaterSection = () => (
-  <section id="water" className="relative min-h-screen w-full snap-start overflow-hidden">
+  <section id="water" className="relative h-screen w-full snap-start overflow-hidden">
     <KenBurnsBackground image={kamskoeImg} effect="diagonal" overlay="bg-gradient-to-b from-black/60 via-black/40 to-black/70">
-      <div className="flex flex-col items-center justify-center min-h-screen px-6 py-16">
+      <div className="flex flex-col items-center justify-center h-[72%] px-6 py-16">
         <ScrollReveal>
           <h2 className="text-3xl sm:text-5xl font-bold text-white text-center drop-shadow-lg">
             Отдых на воде
@@ -41,6 +43,12 @@ const WaterSection = () => (
         </div>
       </div>
     </KenBurnsBackground>
+
+    <SectionPeek
+      nextSectionId="medical"
+      nextImage={doctorsImg}
+      nextTitle="Отдых с пользой для здоровья"
+    />
   </section>
 );
 

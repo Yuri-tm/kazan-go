@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import KenBurnsBackground from "@/components/KenBurnsBackground";
 import ScrollReveal from "@/components/ScrollReveal";
+import SectionPeek from "@/components/SectionPeek";
 import childrenImg from "@/assets/children.jpg";
+import servicesImg from "@/assets/services.jpeg";
 
 const attractions = [
   { name: "Театр кукол «Экият»", url: "https://www.puppet-show.ru/", desc: "Волшебный мир для детей" },
@@ -19,9 +21,9 @@ const FamilySection = () => {
   }, []);
 
   return (
-    <section id="family" className="relative min-h-screen w-full snap-start overflow-hidden">
+    <section id="family" className="relative h-screen w-full snap-start overflow-hidden">
       <KenBurnsBackground image={childrenImg} effect="diagonal" overlay="bg-gradient-to-b from-black/50 to-black/70">
-        <div className="flex flex-col items-center justify-center min-h-screen px-6 py-16">
+        <div className="flex flex-col items-center justify-center h-[72%] px-6 py-16">
           <ScrollReveal>
             <h2 className="text-3xl sm:text-5xl font-bold text-white text-center drop-shadow-lg">
               Отдых всей семьёй
@@ -31,7 +33,6 @@ const FamilySection = () => {
             </p>
           </ScrollReveal>
 
-          {/* Carousel */}
           <div className="mt-10 relative w-full max-w-lg h-48 sm:h-56">
             {attractions.map((a, i) => (
               <a
@@ -49,7 +50,6 @@ const FamilySection = () => {
             ))}
           </div>
 
-          {/* Dots */}
           <div className="mt-6 flex gap-2">
             {attractions.map((_, i) => (
               <button
@@ -64,6 +64,12 @@ const FamilySection = () => {
           </div>
         </div>
       </KenBurnsBackground>
+
+      <SectionPeek
+        nextSectionId="services"
+        nextImage={servicesImg}
+        nextTitle="Наши услуги"
+      />
     </section>
   );
 };

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import KenBurnsBackground from "@/components/KenBurnsBackground";
+import SectionPeek from "@/components/SectionPeek";
 import crowdedImg from "@/assets/crowded_crop.png";
 import rivyeraImg from "@/assets/rivyera_crop.jpg";
+import kamskoeImg from "@/assets/kamskoe_crop.jpg";
 
 const HeroSection = () => {
   const [flipped, setFlipped] = useState(false);
@@ -35,14 +37,13 @@ const HeroSection = () => {
         </KenBurnsBackground>
       </div>
 
-      {/* View 2 - Kazan */}
+      {/* View 2 - Kazan (clips to 72% when flipped to leave room for Water peek) */}
       <div
         className="absolute inset-0 transition-all duration-700 ease-in-out"
         style={{
           clipPath: flipped
-            ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+            ? "polygon(0 0, 100% 0, 100% 72%, 0 78%)"
             : "polygon(0 78%, 100% 72%, 100% 100%, 0 100%)",
-          transform: flipped ? "translateY(0)" : "translateY(0)",
         }}
       >
         <KenBurnsBackground
@@ -51,8 +52,10 @@ const HeroSection = () => {
           overlay="bg-gradient-to-t from-black/60 to-black/30"
         >
           <div
-            className="flex flex-col items-center justify-end h-full px-6 text-center transition-all duration-700"
-            style={{ paddingBottom: flipped ? "20vh" : "4vh" }}
+            className="flex flex-col items-center justify-center h-[72%] px-6 text-center transition-all duration-700"
+            style={{
+              opacity: flipped ? 1 : 1,
+            }}
           >
             <h2
               className="font-bold text-white drop-shadow-md transition-all duration-700"
@@ -88,27 +91,47 @@ const HeroSection = () => {
         className="absolute inset-0 z-20 pointer-events-none transition-opacity duration-500"
         style={{ opacity: flipped ? 0 : 1 }}
       >
-        <svg
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          className="w-full h-full"
-        >
-          <line
-            x1="0" y1="78" x2="100" y2="72"
-            stroke="hsl(43 90% 55%)"
-            strokeWidth="0.25"
-          />
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
+          <line x1="0" y1="78" x2="100" y2="72" stroke="hsl(43 90% 55%)" strokeWidth="0.25" />
         </svg>
       </div>
 
-      {/* Toggle button — sits on the diagonal */}
-      <button
-        onClick={() => setFlipped((f) => !f)}
-        className="absolute z-30 left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-kazan-gold/20 backdrop-blur-md border border-kazan-gold/50 flex items-center justify-center text-white shadow-lg animate-float-arrow hover:bg-kazan-gold/40 transition-all duration-700"
-        style={{ top: flipped ? "calc(50% - 28px)" : "calc(75% - 28px)" }}
-        aria-label={flipped ? "Назад" : "Далее"}
+      {/* Water section peek — visible only after flip */}
+      <div
+        className="transition-opacity duration-500"
+        style={{ opacity: flipped ? 1 : 0, pointerEvents: flipped ? "auto" : "none" }}
       >
-        {flipped ? <ChevronDown className="w-6 h-6" /> : <ChevronUp className="w-6 h-6" />}
+        <SectionPeek
+          nextSectionId="water"
+          nextImage={kamskoeImg}
+          nextTitle="Отдых на воде"
+        />
+      </div>
+
+      {/* Toggle / scroll button */}
+      <button
+        onClick={() => {
+          if (!flipped) {
+            setFlipped(true);
+          } else {
+            document.getElementById("water")?.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
+        className="absolute z-30 left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-kazan-gold/20 backdrop-blur-md border border-kazan-gold/50 flex items-center justify-center text-white shadow-lg animate-float-arrow hover:bg-kazan-gold/40 transition-all duration-700"
+        style={{ top: "calc(75% - 28px)" }}
+        aria-label="Далее"
+      >
+        <ChevronUp className="w-6 h-6" />
+      </button>
+
+      {/* Back button — visible only after flip */}
+      <button
+        onClick={() => setFlipped(false)}
+        className="absolute z-30 left-1/2 -translate-x-1/2 top-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transition-all duration-500"
+        style={{ opacity: flipped ? 1 : 0, pointerEvents: flipped ? "auto" : "none" }}
+        aria-label="Назад"
+      >
+        <ChevronDown className="w-5 h-5" />
       </button>
     </section>
   );

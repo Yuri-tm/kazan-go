@@ -53,7 +53,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen w-full snap-start overflow-hidden">
+    <section id="contact" className="relative min-h-screen w-full overflow-hidden">
       <KenBurnsBackground image={servicesImg} effect="zoom-out" overlay="bg-gradient-to-b from-black/50 to-black/80">
         <div className="flex flex-col items-center justify-center min-h-screen px-6 py-16">
           <ScrollReveal>

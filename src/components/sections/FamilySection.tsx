@@ -21,7 +21,7 @@ const FamilySection = () => {
   }, []);
 
   return (
-    <section id="family" className="relative h-screen w-full snap-start overflow-hidden">
+    <section id="family" className="relative h-screen w-full overflow-hidden">
       <KenBurnsBackground image={childrenImg} effect="diagonal" overlay="bg-gradient-to-b from-black/50 to-black/70">
         <div className="flex flex-col items-center justify-center h-[72%] px-6 py-16">
           <ScrollReveal>

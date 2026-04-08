@@ -8,7 +8,10 @@ interface SectionPeekProps {
 
 const SectionPeek = ({ nextSectionId, nextImage, nextTitle }: SectionPeekProps) => {
   const scrollToNext = () => {
-    document.getElementById(nextSectionId)?.scrollIntoView({ behavior: "smooth" });
+    const wrapEl = document.getElementById(`wrap-${nextSectionId}`);
+    if (wrapEl) {
+      wrapEl.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (

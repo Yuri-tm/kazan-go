@@ -7,27 +7,37 @@ import ServicesSection from "@/components/sections/ServicesSection";
 import ContactSection from "@/components/sections/ContactSection";
 
 const sections = [
-  HeroSection,
-  KazanSection,
-  WaterSection,
-  MedicalSection,
-  FamilySection,
-  ServicesSection,
-  ContactSection,
+  { id: "hero", Component: HeroSection },
+  { id: "kazan", Component: KazanSection },
+  { id: "water", Component: WaterSection },
+  { id: "medical", Component: MedicalSection },
+  { id: "family", Component: FamilySection },
+  { id: "services", Component: ServicesSection },
+  { id: "contact", Component: ContactSection },
 ];
 
 const Index = () => (
-  <main className="w-full overflow-y-auto h-screen">
-    {sections.map((Section, i) => {
+  <main className="relative">
+    {sections.map(({ id, Component }, i) => {
       const isLast = i === sections.length - 1;
       return (
         <div
-          key={i}
-          className={`relative w-full ${isLast ? "h-screen" : "h-[200vh]"}`}
-          style={{ zIndex: sections.length - i }}
+          key={id}
+          id={`wrap-${id}`}
+          className={isLast ? "relative" : "relative"}
+          style={{
+            height: isLast ? "100vh" : "200vh",
+            zIndex: sections.length - i,
+          }}
         >
-          <div className="sticky top-0 h-screen w-full overflow-hidden shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
-            <Section />
+          <div
+            className="sticky top-0 w-full overflow-hidden"
+            style={{
+              height: "100vh",
+              boxShadow: "0 -10px 40px rgba(0,0,0,0.6)",
+            }}
+          >
+            <Component />
           </div>
         </div>
       );

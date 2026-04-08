@@ -2,9 +2,9 @@ import { useState } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import KenBurnsBackground from "@/components/KenBurnsBackground";
 import SectionPeek from "@/components/SectionPeek";
-import crowdedImg from "@/assets/crowded_crop.png";
-import rivyeraImg from "@/assets/rivyera_crop.jpg";
-import kamskoeImg from "@/assets/kamskoe_crop.jpg";
+import crowdedImg from "@/assets/Crowded.webp";
+import rivyeraImg from "@/assets/Rivyera.webp";
+import kamskoeImg from "@/assets/Kamskoye.webp";
 
 const HeroSection = () => {
   const [flipped, setFlipped] = useState(false);
@@ -25,14 +25,11 @@ const HeroSection = () => {
           transform: flipped ? "translateY(-20%)" : "translateY(0)",
         }}
       >
-        <KenBurnsBackground image={crowdedImg} effect="zoom-in" overlay="bg-black/45">
+        <KenBurnsBackground image={crowdedImg} effect="pan-left" overlay="bg-black/45">
           <div className="flex flex-col items-center justify-center h-[75%] px-6 text-center">
             <h1 className="text-4xl sm:text-6xl font-bold text-white drop-shadow-lg leading-tight tracking-tight">
               На переполненный пляж?
             </h1>
-            <p className="mt-4 text-lg sm:text-xl text-white/80 font-light">
-              есть места почище
-            </p>
           </div>
         </KenBurnsBackground>
       </div>

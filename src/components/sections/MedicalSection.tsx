@@ -1,8 +1,8 @@
 import KenBurnsBackground from "@/components/KenBurnsBackground";
 import ScrollReveal from "@/components/ScrollReveal";
 import SectionPeek from "@/components/SectionPeek";
-import doctorsImg from "@/assets/doctors_small.jpg";
-import childrenImg from "@/assets/children.jpg";
+import doctorsImg from "@/assets/Doctors.webp";
+import childrenImg from "@/assets/Elmai.webp";
 
 const MedicalSection = () => (
   <section id="medical" className="relative h-screen w-full snap-start overflow-hidden">

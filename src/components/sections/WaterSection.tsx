@@ -1,8 +1,8 @@
 import KenBurnsBackground from "@/components/KenBurnsBackground";
 import ScrollReveal from "@/components/ScrollReveal";
 import SectionPeek from "@/components/SectionPeek";
-import kamskoeImg from "@/assets/kamskoe_crop.jpg";
-import doctorsImg from "@/assets/doctors_small.jpg";
+import kamskoeImg from "@/assets/Kamskoye.webp";
+import doctorsImg from "@/assets/Doctors.webp";
 
 const venues = [
   { name: "«Ривьера»", url: "https://kazanriviera.ru/aquapark/", desc: "Аквапарк" },

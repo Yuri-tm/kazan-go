@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import KenBurnsBackground from "@/components/KenBurnsBackground";
 import ScrollReveal from "@/components/ScrollReveal";
 import SectionPeek from "@/components/SectionPeek";
-import childrenImg from "@/assets/children.jpg";
+import childrenImg from "@/assets/Elmai.webp";
 import servicesImg from "@/assets/services.jpeg";
 
 const attractions = [

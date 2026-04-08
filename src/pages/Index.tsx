@@ -17,14 +17,14 @@ const sections = [
 ];
 
 const Index = () => (
-  <main className="w-full snap-y snap-mandatory overflow-y-auto h-screen">
+  <main className="w-full overflow-y-auto h-screen">
     {sections.map((Section, i) => (
       <div
         key={i}
-        className="relative h-screen w-full snap-start"
+        className="relative h-screen w-full"
         style={{ zIndex: sections.length - i }}
       >
-        <div className="sticky top-0 h-screen w-full">
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
           <Section />
         </div>
       </div>

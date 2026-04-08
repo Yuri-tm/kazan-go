@@ -10,7 +10,7 @@ const KazanSection = () => {
   };
 
   return (
-    <section id="kazan" className="relative h-screen w-full snap-start overflow-hidden">
+    <section id="kazan" className="relative h-screen w-full overflow-hidden">
       <KenBurnsBackground
         image={rivyeraImg}
         effect="zoom-out"

@@ -11,7 +11,7 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section id="services" className="relative h-screen w-full snap-start overflow-hidden">
+  <section id="services" className="relative h-screen w-full overflow-hidden">
     <KenBurnsBackground image={servicesImg} effect="zoom-in" overlay="bg-gradient-to-b from-black/60 to-black/70">
       <div className="flex flex-col items-center justify-center h-[72%] px-6 py-16">
         <ScrollReveal>

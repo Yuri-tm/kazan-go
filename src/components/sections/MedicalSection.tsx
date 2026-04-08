@@ -5,7 +5,7 @@ import doctorsImg from "@/assets/Doctors.webp";
 import childrenImg from "@/assets/Elmai.webp";
 
 const MedicalSection = () => (
-  <section id="medical" className="relative h-screen w-full snap-start overflow-hidden">
+  <section id="medical" className="relative h-screen w-full overflow-hidden">
     <KenBurnsBackground image={doctorsImg} effect="pan-left" overlay="bg-gradient-to-r from-black/70 via-black/40 to-transparent">
       <div className="flex flex-col justify-center h-[72%] px-8 sm:px-16 py-16 max-w-2xl">
         <ScrollReveal>

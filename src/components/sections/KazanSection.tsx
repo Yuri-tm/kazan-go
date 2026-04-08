@@ -6,7 +6,7 @@ import kamskoeImg from "@/assets/Kamskoye.webp";
 
 const KazanSection = () => {
   const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("wrap-contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

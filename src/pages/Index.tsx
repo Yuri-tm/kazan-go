@@ -18,17 +18,20 @@ const sections = [
 
 const Index = () => (
   <main className="w-full overflow-y-auto h-screen">
-    {sections.map((Section, i) => (
-      <div
-        key={i}
-        className="relative h-screen w-full"
-        style={{ zIndex: sections.length - i }}
-      >
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
-          <Section />
+    {sections.map((Section, i) => {
+      const isLast = i === sections.length - 1;
+      return (
+        <div
+          key={i}
+          className={`relative w-full ${isLast ? "h-screen" : "h-[200vh]"}`}
+          style={{ zIndex: sections.length - i }}
+        >
+          <div className="sticky top-0 h-screen w-full overflow-hidden shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
+            <Section />
+          </div>
         </div>
-      </div>
-    ))}
+      );
+    })}
   </main>
 );
 

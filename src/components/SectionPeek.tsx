@@ -1,18 +1,14 @@
 import { ChevronUp } from "lucide-react";
+import { useNavigation } from "@/contexts/NavigationContext";
 
 interface SectionPeekProps {
   nextSectionId: string;
   nextImage: string;
   nextTitle: string;
-  onNavigate?: () => void;
 }
 
-const SectionPeek = ({ nextSectionId, nextImage, nextTitle, onNavigate }: SectionPeekProps) => {
-  const handleClick = () => {
-    if (onNavigate) {
-      onNavigate();
-    }
-  };
+const SectionPeek = ({ nextSectionId, nextImage, nextTitle }: SectionPeekProps) => {
+  const { goToNext } = useNavigation();
 
   return (
     <>
@@ -48,7 +44,7 @@ const SectionPeek = ({ nextSectionId, nextImage, nextTitle, onNavigate }: Sectio
 
       {/* UP button on the diagonal */}
       <button
-        onClick={handleClick}
+        onClick={goToNext}
         className="absolute z-30 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-kazan-gold/20 backdrop-blur-md border border-kazan-gold/50 flex items-center justify-center text-white shadow-lg animate-float-arrow hover:bg-kazan-gold/40 transition-colors"
         style={{ top: "calc(75% - 24px)" }}
         aria-label="Далее"

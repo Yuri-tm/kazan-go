@@ -74,7 +74,8 @@ const Index = () => {
           </div>
         );
       })}
-    </main>
+      </main>
+    </NavigationProvider>
   );
 };
 

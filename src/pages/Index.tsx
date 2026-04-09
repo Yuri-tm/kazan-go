@@ -1,4 +1,5 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
+import { NavigationProvider } from "@/contexts/NavigationContext";
 import HeroSection from "@/components/sections/HeroSection";
 import KazanSection from "@/components/sections/KazanSection";
 import WaterSection from "@/components/sections/WaterSection";
@@ -24,7 +25,6 @@ const Index = () => {
   const goToNext = useCallback(() => {
     if (animating || activeIndex >= sections.length - 1) return;
     setAnimating(true);
-    // After animation completes, advance index
     setTimeout(() => {
       setActiveIndex((prev) => prev + 1);
       setAnimating(false);
@@ -36,44 +36,45 @@ const Index = () => {
     setActiveIndex((prev) => prev - 1);
   }, [animating, activeIndex]);
 
-  // Always render active layer + next layer (at minimum)
+  const navValue = useMemo(() => ({ goToNext, goToPrev }), [goToNext, goToPrev]);
+
+  // Render: underneath layer (next) + active layer (current, on top)
   const visibleIndices: number[] = [];
-  // The "underneath" layer (next section) renders first
   if (activeIndex + 1 < sections.length) {
     visibleIndices.push(activeIndex + 1);
   }
-  // The active (top) layer
   visibleIndices.push(activeIndex);
 
   return (
-    <main
-      className="relative w-full h-screen overflow-hidden"
-      onWheel={(e) => {
-        if (e.deltaY > 30) goToNext();
-        else if (e.deltaY < -30) goToPrev();
-      }}
-    >
-      {visibleIndices.map((idx) => {
-        const { id, Component } = sections[idx];
-        const isActive = idx === activeIndex;
-        const shouldSlideUp = isActive && animating;
+    <NavigationProvider value={navValue}>
+      <main
+        className="relative w-full h-screen overflow-hidden"
+        onWheel={(e) => {
+          if (e.deltaY > 30) goToNext();
+          else if (e.deltaY < -30) goToPrev();
+        }}
+      >
+        {visibleIndices.map((idx) => {
+          const { id, Component } = sections[idx];
+          const isActive = idx === activeIndex;
+          const shouldSlideUp = isActive && animating;
 
-        return (
-          <div
-            key={id}
-            id={`wrap-${id}`}
-            className="absolute inset-0 w-full h-screen"
-            style={{
-              zIndex: isActive ? 2 : 1,
-              transform: shouldSlideUp ? "translateY(-100%)" : "translateY(0)",
-              transition: shouldSlideUp ? "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
-              boxShadow: isActive ? "0 10px 40px rgba(0,0,0,0.5)" : "none",
-            }}
-          >
-            <Component />
-          </div>
-        );
-      })}
+          return (
+            <div
+              key={id}
+              id={`wrap-${id}`}
+              className="absolute inset-0 w-full h-screen"
+              style={{
+                zIndex: isActive ? 2 : 1,
+                transform: shouldSlideUp ? "translateY(-100%)" : "translateY(0)",
+                transition: shouldSlideUp ? "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+                boxShadow: isActive ? "0 10px 40px rgba(0,0,0,0.5)" : "none",
+              }}
+            >
+              <Component />
+            </div>
+          );
+        })}
       </main>
     </NavigationProvider>
   );

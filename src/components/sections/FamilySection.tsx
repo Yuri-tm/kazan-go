@@ -7,22 +7,26 @@ import servicesImg from "@/assets/services.jpeg";
 
 const attractions = [
   { name: "Театр кукол «Экият»", url: "https://www.puppet-show.ru/", desc: "Волшебный мир для детей" },
-  { name: "Детский парк Елмай", url: "#", desc: "Активный отдых на свежем воздухе" },
+  { name: "Детский парк Елмай", url: "https://yandex.ru/search/?text=парк+елмай+казань", desc: "Активный отдых на свежем воздухе" },
   { name: "Зооботсад «Река Замбези»", url: "https://kazzoobotsad.ru/", desc: "Знакомство с дикой природой" },
   { name: "Казанский цирк", url: "https://kazan-circus.ru/", desc: "Незабываемые представления" },
 ];
 
-const FamilySection = () => {
+interface FamilySectionProps {
+  showPeek?: boolean;
+}
+
+const FamilySection = ({ showPeek = true }: FamilySectionProps) => {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => setActive((p) => (p + 1) % attractions.length), 5000);
+    const timer = setInterval(() => setActive((p) => (p + 1) % attractions.length), 3000);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section id="family" className="relative h-screen w-full overflow-hidden">
-      <KenBurnsBackground image={childrenImg} effect="diagonal" overlay="bg-gradient-to-b from-black/50 to-black/70">
+      <KenBurnsBackground image={childrenImg} effect="none" overlay="bg-gradient-to-b from-black/50 to-black/70">
         <div className="flex flex-col items-center justify-center h-[72%] px-6 py-16">
           <ScrollReveal>
             <h2 className="text-3xl sm:text-5xl font-bold text-white text-center drop-shadow-lg">
@@ -40,8 +44,8 @@ const FamilySection = () => {
                 href={a.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`absolute inset-0 glass flex flex-col items-center justify-center p-8 text-center transition-all duration-700 ${
-                  i === active ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                className={`absolute inset-0 glass flex flex-col items-center justify-center p-8 text-center transition-all duration-500 ${
+                  i === active ? "opacity-90 scale-100" : "opacity-0 scale-95 pointer-events-none"
                 }`}
               >
                 <span className="text-2xl font-bold text-white">{a.name}</span>
@@ -65,11 +69,13 @@ const FamilySection = () => {
         </div>
       </KenBurnsBackground>
 
-      <SectionPeek
-        nextSectionId="services"
-        nextImage={servicesImg}
-        nextTitle="Наши услуги"
-      />
+      {showPeek && (
+        <SectionPeek
+          nextSectionId="services"
+          nextImage={servicesImg}
+          nextTitle="Наши услуги"
+        />
+      )}
     </section>
   );
 };

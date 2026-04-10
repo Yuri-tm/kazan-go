@@ -4,9 +4,13 @@ import SectionPeek from "@/components/SectionPeek";
 import doctorsImg from "@/assets/Doctors.webp";
 import childrenImg from "@/assets/Elmai.webp";
 
-const MedicalSection = () => (
+interface MedicalSectionProps {
+  showPeek?: boolean;
+}
+
+const MedicalSection = ({ showPeek = true }: MedicalSectionProps) => (
   <section id="medical" className="relative h-screen w-full overflow-hidden">
-    <KenBurnsBackground image={doctorsImg} effect="pan-left" overlay="bg-gradient-to-r from-black/70 via-black/40 to-transparent">
+    <KenBurnsBackground image={doctorsImg} effect="none" overlay="bg-gradient-to-r from-black/70 via-black/40 to-transparent">
       <div className="flex flex-col justify-center h-[72%] px-8 sm:px-16 py-16 max-w-2xl">
         <ScrollReveal>
           <h2 className="text-3xl sm:text-5xl font-bold text-white drop-shadow-lg leading-tight">
@@ -21,17 +25,19 @@ const MedicalSection = () => (
         <ScrollReveal delay={400}>
           <div className="mt-8 glass-dark inline-flex items-center gap-3 px-6 py-4 max-w-fit">
             <div className="w-3 h-3 rounded-full bg-kazan-emerald animate-pulse" />
-            <span className="text-white/90 text-base">Индивидуальный подбор специалистов</span>
+            <span className="text-white/90 text-base">все виды терапии и профессиональная чистка зубов</span>
           </div>
         </ScrollReveal>
       </div>
     </KenBurnsBackground>
 
-    <SectionPeek
-      nextSectionId="family"
-      nextImage={childrenImg}
-      nextTitle="Отдых всей семьёй"
-    />
+    {showPeek && (
+      <SectionPeek
+        nextSectionId="family"
+        nextImage={childrenImg}
+        nextTitle="Отдых всей семьёй"
+      />
+    )}
   </section>
 );
 

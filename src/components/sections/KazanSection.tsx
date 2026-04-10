@@ -4,7 +4,11 @@ import SectionPeek from "@/components/SectionPeek";
 import rivyeraImg from "@/assets/Rivyera.webp";
 import kamskoeImg from "@/assets/Kamskoye.webp";
 
-const KazanSection = () => {
+interface KazanSectionProps {
+  showPeek?: boolean;
+}
+
+const KazanSection = ({ showPeek = true }: KazanSectionProps) => {
   const scrollToContact = () => {
     document.getElementById("wrap-contact")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -13,7 +17,7 @@ const KazanSection = () => {
     <section id="kazan" className="relative h-screen w-full overflow-hidden">
       <KenBurnsBackground
         image={rivyeraImg}
-        effect="zoom-out"
+        effect="none"
         overlay="bg-gradient-to-t from-black/60 to-black/30"
       >
         <div className="flex flex-col items-center justify-center h-[72%] px-6 text-center">
@@ -25,6 +29,9 @@ const KazanSection = () => {
           <ScrollReveal delay={200}>
             <p className="mt-4 text-lg sm:text-xl text-white/75 font-light">
               отдых для души и для тела
+            </p>
+            <p className="text-kazan-gold italic">
+              "Очень красивый город, обязательно вернусь!" <span className="mt-4 text-lg sm:text-xl text-white/75 font-light">- самый частый отзыв</span>
             </p>
           </ScrollReveal>
           <ScrollReveal delay={400}>
@@ -38,11 +45,13 @@ const KazanSection = () => {
         </div>
       </KenBurnsBackground>
 
-      <SectionPeek
-        nextSectionId="water"
-        nextImage={kamskoeImg}
-        nextTitle="Отдых на воде"
-      />
+      {showPeek && (
+        <SectionPeek
+          nextSectionId="water"
+          nextImage={kamskoeImg}
+          nextTitle="Отдых на воде"
+        />
+      )}
     </section>
   );
 };

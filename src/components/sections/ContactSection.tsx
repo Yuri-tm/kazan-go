@@ -5,7 +5,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 import servicesImg from "@/assets/services.jpeg";
 import { useToast } from "@/hooks/use-toast";
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  showPeek?: boolean;
+}
+
+const ContactSection = ({ showPeek: _showPeek = true }: ContactSectionProps) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
@@ -54,7 +58,7 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="relative min-h-screen w-full overflow-hidden">
-      <KenBurnsBackground image={servicesImg} effect="zoom-out" overlay="bg-gradient-to-b from-black/50 to-black/80">
+      <KenBurnsBackground image={servicesImg} effect="none" overlay="bg-gradient-to-b from-black/50 to-black/80">
         <div className="flex flex-col items-center justify-center min-h-screen px-6 py-16">
           <ScrollReveal>
             <h2 className="text-3xl sm:text-5xl font-bold text-white text-center drop-shadow-lg mb-10">

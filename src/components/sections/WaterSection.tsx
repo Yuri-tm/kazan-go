@@ -7,13 +7,19 @@ import doctorsImg from "@/assets/Doctors.webp";
 const venues = [
   { name: "«Ривьера»", url: "https://kazanriviera.ru/aquapark/", desc: "Аквапарк" },
   { name: "«Пляж»", url: "https://plyazh.pro/", desc: "Велнес-спа" },
-  { name: "Tatar Su", url: "#", desc: "Пляжный комплекс" },
+  { name: "Tatar Su", url: "https://yandex.ru/search/?text=tatar+su+казань", desc: "Открытие в 2026г." },
   { name: "«Аквазаврия»", url: "https://baryonix.ru", desc: "Аквапарк" },
+  { name: "«Пляж Камское море»", url: "https://yandex.ru/search/?text=Пляж+камское+море", desc: "пляжный комплекс" },
+  { name: "А еще есть речные круизы", url: "https://yandex.ru/search/?text=речные+круизы+казань", desc: "разных видов" },
 ];
 
-const WaterSection = () => (
+interface WaterSectionProps {
+  showPeek?: boolean;
+}
+
+const WaterSection = ({ showPeek = true }: WaterSectionProps) => (
   <section id="water" className="relative h-screen w-full overflow-hidden">
-    <KenBurnsBackground image={kamskoeImg} effect="diagonal" overlay="bg-gradient-to-b from-black/60 via-black/40 to-black/70">
+    <KenBurnsBackground image={kamskoeImg} effect="none" overlay="bg-gradient-to-b from-black/60 via-black/40 to-black/70">
       <div className="flex flex-col items-center justify-center h-[72%] px-6 py-16">
         <ScrollReveal>
           <h2 className="text-3xl sm:text-5xl font-bold text-white text-center drop-shadow-lg">
@@ -44,11 +50,13 @@ const WaterSection = () => (
       </div>
     </KenBurnsBackground>
 
-    <SectionPeek
-      nextSectionId="medical"
-      nextImage={doctorsImg}
-      nextTitle="Отдых с пользой для здоровья"
-    />
+    {showPeek && (
+      <SectionPeek
+        nextSectionId="medical"
+        nextImage={doctorsImg}
+        nextTitle="Отдых с пользой для здоровья"
+      />
+    )}
   </section>
 );
 

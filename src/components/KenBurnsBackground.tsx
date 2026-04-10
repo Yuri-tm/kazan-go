@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type KenBurnsEffect = "zoom-in" | "zoom-out" | "pan-left" | "diagonal";
+type KenBurnsEffect = "none" | "zoom-in" | "zoom-out" | "pan-left" | "diagonal";
 
 interface KenBurnsBackgroundProps {
   image: string;
@@ -11,6 +11,7 @@ interface KenBurnsBackgroundProps {
 }
 
 const effectClasses: Record<KenBurnsEffect, string> = {
+  none: "",
   "zoom-in": "animate-ken-burns-zoom-in",
   "zoom-out": "animate-ken-burns-zoom-out",
   "pan-left": "animate-ken-burns-pan-left",
